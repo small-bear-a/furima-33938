@@ -7,7 +7,6 @@
 | -------------------| ------- | ------------------------- |
 | nickname           | string  | null: false               |
 | email              | string  | null: false, unique: true |
-| password           | string  | null: false               |
 | encrypted_password | string  | null: false               |
 | last_name          | string  | null: false               |
 | first_name         | string  | null: false               |
@@ -32,7 +31,7 @@
 | shipping_cost_id | integer    | null: false                    |
 | prefecture_id    | integer    | null: false                    |
 | shipping_day_id  | integer    | null: false                    |
-| price            | integer    |                                |
+| price            | integer    | null: false                    |
 | user             | references | null: false, foreign_key: true |
 
 
@@ -66,7 +65,7 @@
 | address       | string     | null: false                    |
 | building_name | string     |                                |
 | phone         | string     | null: false                    |
-|item           | references | null: false, foreign_key: true |
+|purchase       | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :purchase
