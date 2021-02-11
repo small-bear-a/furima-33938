@@ -3,31 +3,37 @@
 
 ## users テーブル
 
-| Column          | Type    | Options     |
-| ----------------| ------- | ----------- |
-| nickname        | string  | null: false |
-| email           | string  | null: false |
-| password        | string  | null: false |
-| last_name       | string  | null: false |
-| first_name      | string  | null: false |
-| last_name_kana  | string  | null: false |
-| first_name_kana | string  | null: fales |
-|bersday          | integer | null: fales |
+| Column          | Type    | Options      |
+| ----------------| ------- | ------------ |
+| nickname        | string  | null: false  |
+| email           | string  | unique: true |
+| password        | string  | null: false  |
+| last_name       | string  | null: false  |
+| first_name      | string  | null: false  |
+| last_name_kana  | string  | null: false  |
+| first_name_kana | string  | null: fales  |
+|birthday         | date    | null: fales  |
 
 ### Association
 - has_many :items
-- has_one :purchases
+- has_many :purchases
 
 
 
 ## items テーブル
 
-| Column     | Type       | Options                        |
-| -----------| ---------- | ------------------------------ |
-| title      | string     | null: false                    |
-| catch_copy | text       | null: false                    |
-| concept    | text       | null: false                    |
-| user_id    | references | null: false, foreign_key: true |
+| Column            | Type       | Options                        |
+| ------------------| ---------- | ------------------------------ |
+| title             | string     | null: false                    |
+| description       | text       | null: false                    |
+| category_id       | integer    | null: false                    |
+| state_id          | integer    | null: false                    |
+| shipping_cost_id  | integer    | null: false                    |
+| shippping_area_id | integer    | null: false                    |
+| shipping_day_id   | integer    | null: false                    |
+| price             | integer    |                                |
+| user              | references | null: false, foreign_key: true |
+
 
 ### Association
 - belongs_to :user
@@ -37,10 +43,10 @@
 
 ## purchase テーブル
 
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| user_id | references | null: false, foreige_key: true |
-| item_id | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreige_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -54,12 +60,12 @@
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | code          | integer    | null: false                    |
-| prefecture    | string     | null: false, foreign_key: true |
-| city          | string     | null: false, foreign_key: true |
+| prefecture_id | integer    | null: false                    |
+| city          | string     | null: false                    |
 | address       | string     | null: false                    |
-| building_name | string     | null: false                    |
-| phone         | integer    | null: false                    |
-|item_id        | references | null: false, foreign_key: true |
+| building_name | string     |                                |
+| phone         | string     | null: false                    |
+|item           | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :purchase
