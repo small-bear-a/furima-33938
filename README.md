@@ -12,7 +12,7 @@
 | first_name         | string  | null: false               |
 | last_name_kana     | string  | null: false               |
 | first_name_kana    | string  | null: fales               |
-|birthday            | date    | null: fales               |
+| birthday           | date    | null: fales               |
 
 ### Association
 - has_many :items
