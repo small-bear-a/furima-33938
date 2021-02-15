@@ -13,7 +13,7 @@ class Item < ApplicationRecord
     validates :image
     validates :title
     validates :description
-    validates :price,inclusion: { in: 300..9_999_999 }, numericality: {only_integer: true}
+    validates :price, inclusion: { in: 300..9_999_999 }, numericality: { only_integer: true }
   end
 
   with_options numericality: { other_than: 1 } do
@@ -23,5 +23,4 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :shipping_day_id
   end
-  
 end
