@@ -24,14 +24,21 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    
   end
-  
+
   def update
-    if @item.update(item_params) 
+    if @item.update(item_params)
       redirect_to root_path
     else
       render :edit
+    end
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    if user_signed_in? && current_user.id == item.user_id
+      item.destroy
+      redirect_to root_path
     end
   end
 
@@ -47,8 +54,6 @@ class ItemsController < ApplicationController
   end
 
   def item_current_user
-    unless current_user == @item.user
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_user == @item.user
   end
 end
