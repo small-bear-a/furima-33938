@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
   def destroy
     item = Item.find(params[:id])
     if current_user != item.user || item.purchase.present?
-      redirect_to root_paht
+      redirect_to root_path
     else
       item.destroy 
       redirect_to root_path
