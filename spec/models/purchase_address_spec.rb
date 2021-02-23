@@ -30,13 +30,13 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'codeが半角のハイフンを含んだ正しい形式でないと保存できない' do
         @purchase_address.code = '1234567'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Code is invalid')
+        expect(@purchase_address.errors.full_messages).to include("Code is invalid")
       end
 
       it 'prefectureを選択していないと保存できない' do
         @purchase_address.prefecture_id = 1
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Prefecture must be other than 1')
+        expect(@purchase_address.errors.full_messages).to include("Prefecture must be other than 1")
       end
 
       it 'cityは空だと保存できない' do
@@ -58,19 +58,19 @@ RSpec.describe PurchaseAddress, type: :model do
       end
 
       it 'phonが9桁以下だと保存できない' do
-        @purchase_address.phone = 123451234
+        @purchase_address.phone = '123451234'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Phone is invalid')
+        expect(@purchase_address.errors.full_messages).to include("Phone is invalid")
       end
 
       it 'phoneが12桁以上保存できない' do
-        @purchase_address.phone = 123451234512
+        @purchase_address.phone = '123451234512'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Phone is invalid')
+        expect(@purchase_address.errors.full_messages).to include("Phone is invalid")
       end
 
       it 'phoneが英数混合だと保存できない' do
-        @purchase_address.phone = "a1234512345"
+        @purchase_address.phone = 'a1234512345'
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Phone is invalid")
       end
