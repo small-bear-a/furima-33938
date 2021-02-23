@@ -58,15 +58,21 @@ RSpec.describe PurchaseAddress, type: :model do
       end
 
       it 'phonが9桁以下だと保存できない' do
-        @purchase_address.phone = 123_451_234
+        @purchase_address.phone = 123451234
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include('Phone is invalid')
       end
 
       it 'phoneが12桁以上保存できない' do
-        @purchase_address.phone = 123_451_234_512
+        @purchase_address.phone = 123451234512
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include('Phone is invalid')
+      end
+
+      it 'phoneが英数混合だと保存できない' do
+        @purchase_address.phone = "a1234512345"
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Phone is invalid")
       end
 
       it 'userの情報が無いと保存できない' do
